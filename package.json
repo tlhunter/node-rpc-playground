@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/tlhunter/node-rpc-playground/issues"
   },
-  "homepage": "https://github.com/tlhunter/node-rpc-playground#readme"
+  "homepage": "https://github.com/tlhunter/node-rpc-playground#readme",
+  "dependencies": {
+    "msgpack5": "^3.5.1"
+  }
 }
