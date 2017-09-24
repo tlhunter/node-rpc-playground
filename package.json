@@ -1,0 +1,24 @@
+{
+  "name": "rpc-playground",
+  "version": "0.0.1",
+  "description": "Experimenting with JSON RPC over TCP",
+  "main": "server.js",
+  "scripts": {
+    "test": "client.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlhunter/node-rpc-playground.git"
+  },
+  "keywords": [
+    "json-rpc",
+    "rpc"
+  ],
+  "author": "Thomas Hunter II <me@thomashunter.name>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/tlhunter/node-rpc-playground/issues"
+  },
+  "homepage": "https://github.com/tlhunter/node-rpc-playground#readme"
+}
