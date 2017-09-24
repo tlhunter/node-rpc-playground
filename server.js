@@ -38,7 +38,7 @@ function generateSuccess (id, result) {
     id
   }
 
-  return JSON.stringify(payload)
+  return `${JSON.stringify(payload)}\r\n`
 }
 
 const server = net.createServer((client) => {
