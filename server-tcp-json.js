@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
 const net = require('net')
-const mp = require('msgpack5')()
 
-const PORT = 9091
+const PORT = 9090
 
 const rpc = {
   sum (numbers, callback) {
@@ -29,7 +28,7 @@ function generateError (id, code, message) {
     id
   }
 
-  return mp.encode(payload)
+  return JSON.stringify(payload)
 }
 
 function generateSuccess (id, result) {
@@ -39,14 +38,15 @@ function generateSuccess (id, result) {
     id
   }
 
-  return mp.encode(payload)
+  return `${JSON.stringify(payload)}\r\n`
 }
 
 const server = net.createServer((client) => {
   console.log('client connected')
   client.on('data', (data) => {
-    let object = mp.decode(data)
-    console.log('new data', object)
+    let string = data.toString()
+    let object = JSON.parse(string)
+    // console.log('new data', object)
     if (!(object.method in rpc)) {
       return void client.write(generateError(
         object.id,
@@ -70,10 +70,14 @@ const server = net.createServer((client) => {
   client.on('end', () => {
     console.log('client disconnected')
   })
+
+  client.on('error', (error) => {
+    console.error(`client had an error: ${error}`)
+  })
 })
 
 server.on('error', (error) => {
-  console.log(`server had an error: ${error}`)
+  console.error(`server had an error: ${error}`)
 })
 
 server.listen(PORT, () => {
