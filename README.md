@@ -14,10 +14,10 @@ When performing TCP benchmarks the timer starts after a connection is establishe
 | _Ping_      | 0.065 ms  | 5.264 ms       | 250.8 ms     |
 | HTTP + JSON | ??? o/s   | ??? o/s        | ??? o/s      |
 | HTTP + MP   | ??? o/s   | ??? o/s        | ??? o/s      |
-| TCP + JSON  | 9.900 o/s | 5.372 o/s      | 3.664 o/s    |
-| TCP + MP    | 9.846 o/s | 5.111 o/s      | 3.704 o/s    |
+| TCP + JSON  | 15886 o/s | 194.185 o/s    | 4.383 o/s    |
+| TCP + MP    | 8004 o/s  | 177.167 o/s    | 4.364 o/s    |
 
-So far I do not trust these results. Only being able to send, process, and receive 10 ops/sec on the same machine is a bit concerning. This is consistent both on my Linux development machine and my Linux VPS. I suspect there's an inefficiency in my code.
+According to these results, at no point is MessagePack with Node.js faster than using JSON. As network latency gets worse and worse we approach having the two operations take the same amount of time. It will probably take a larger payload for the scales to tip in MessagePack's favor.
 
 ## TODO
 

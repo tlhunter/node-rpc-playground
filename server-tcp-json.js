@@ -12,9 +12,9 @@ const rpc = {
     }
 
     // Pretend to be slow async operation
-    setTimeout(() => {
+    setImmediate(() => {
       callback(null, total)
-    }, 100)
+    })
   }
 }
 
