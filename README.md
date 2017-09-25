@@ -11,7 +11,7 @@ When performing TCP benchmarks the timer starts after a connection is establishe
 | Scenario    | Localhost | SF -> Freemont | SF -> London |
 |-------------|----------:|---------------:|-------------:|
 | _Node_      | v8.5.0    | v8.5.0         | v8.5.0       |
-| _Ping_      | 0.087 ms  | 5.264 ms       | 250.8 ms     |
+| _Ping_      | 0.065 ms  | 5.264 ms       | 250.8 ms     |
 | HTTP + JSON | ??? o/s   | ??? o/s        | ??? o/s      |
 | HTTP + MP   | ??? o/s   | ??? o/s        | ??? o/s      |
 | TCP + JSON  | 9.900 o/s | 5.372 o/s      | 3.664 o/s    |
