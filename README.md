@@ -8,6 +8,11 @@ There is some overhead when converting JSON into MessagePack. However the networ
 
 When performing TCP benchmarks the timer starts after a connection is established (so no DNS stuff). We then send send a message to the server, the server processes the message, and sends a result back to us. This happens 1,000 times and we calculate overall operations per second.
 
+* Request Size JSON: ~60 bytes
+* Response Size JSON: ~40 bytes
+* Request Size MessagePack: 40 bytes
+* Response Size MessagePack: ~27 bytes
+
 | Scenario    | Localhost | SF -> Freemont | SF -> London |
 |-------------|----------:|---------------:|-------------:|
 | _Node_      | v8.5.0    | v8.5.0         | v8.5.0       |
