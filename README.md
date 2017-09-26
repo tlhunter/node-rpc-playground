@@ -8,19 +8,24 @@ There is some overhead when converting JSON into MessagePack. However the networ
 
 When performing TCP benchmarks the timer starts after a connection is established (so no DNS stuff). We then send send a message to the server, the server processes the message, and sends a result back to us. This happens 1,000 times and we calculate overall operations per second.
 
+No modules are used (e.g. for a web server), with the exception of `msgpack5`, which seems to be the only maintained MessagePack module.
+
 * Request Size JSON: ~60 bytes
 * Response Size JSON: ~40 bytes
 * Request Size MessagePack: 40 bytes
 * Response Size MessagePack: ~27 bytes
 
+HTTP is included as a baseline. Don't interpret these results as "Node can do X at y ops per second" as the code has not been optimized. Instead think of it as "This method is X times as fast as Y" as each test-case is just as sloppy ;).
+
 | Scenario    | Localhost | SF -> Freemont | SF -> London |
 |-------------|----------:|---------------:|-------------:|
 | _Node_      | v8.5.0    | v8.5.0         | v8.5.0       |
 | _Ping_      | 0.065 ms  | 5.264 ms       | 250.8 ms     |
-| HTTP + JSON | ??? o/s   | ??? o/s        | ??? o/s      |
-| HTTP + MP   | ??? o/s   | ??? o/s        | ??? o/s      |
+| HTTP + JSON | 2824 o/s  | ??? o/s        | ??? o/s      |
 | TCP + JSON  | 15886 o/s | 194.1 o/s      | 4.383 o/s    |
 | TCP + MP    | 8004 o/s  | 177.1 o/s      | 4.364 o/s    |
+
+## Conclusion
 
 According to these results, at no point is MessagePack with Node.js faster than using JSON. As network latency gets worse and worse we approach having the two operations take the same amount of time. It will probably take a larger payload for the scales to tip in MessagePack's favor.
 
@@ -28,4 +33,5 @@ According to these results, at no point is MessagePack with Node.js faster than 
 
 * Send messages in parallel batches
 * Send larger messages
-* Benchmark using HTTP
+* Benchmark using HTTP2
+* Benchmark using HTTP + Gzip
