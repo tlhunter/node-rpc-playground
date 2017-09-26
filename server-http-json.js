@@ -20,21 +20,22 @@ const rpc = {
 
 const server = http.createServer((req, res) => {
   // console.log('client connected')
-  res.setHeader('Content-Type', 'application/json')
-  let [method, ...args] = req.url.split('/').splice(1)
-  args = args.map(Number)
+  req.on('data', (data) => {
+    let body = JSON.parse(data.toString())
+    res.setHeader('Content-Type', 'application/json')
 
-  if (!(method in rpc)) {
-    res.statusCode = 400
-    return void res.end(JSON.stringify({error: 'method not found'}))
-  }
-
-  rpc[method](args, (error, result) => {
-    if (error) {
-      res.statusCode = 500
-      return void res.end(JSON.stringify({error: String(error)}))
+    if (!(body.method in rpc)) {
+      res.statusCode = 400
+      return void res.end(JSON.stringify({error: 'method not found'}))
     }
-    res.end(JSON.stringify({result}))
+
+    rpc[body.method](body.params, (error, result) => {
+      if (error) {
+        res.statusCode = 500
+        return void res.end(JSON.stringify({error: String(error)}))
+      }
+      res.end(JSON.stringify({result}))
+    })
   })
   // console.log('client disconnected')
 })

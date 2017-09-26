@@ -21,7 +21,7 @@ HTTP is included as a baseline. Don't interpret these results as "Node can do X 
 |-------------|----------:|---------------:|-------------:|
 | _Node_      | v8.5.0    | v8.5.0         | v8.5.0       |
 | _Ping_      | 0.065 ms  | 5.264 ms       | 250.8 ms     |
-| HTTP + JSON | 2824 o/s  | ??? o/s        | ??? o/s      |
+| HTTP + JSON | 3268 o/s  | ??? o/s        | ??? o/s      |
 | TCP + JSON  | 15886 o/s | 194.1 o/s      | 4.383 o/s    |
 | TCP + MP    | 8004 o/s  | 177.1 o/s      | 4.364 o/s    |
 

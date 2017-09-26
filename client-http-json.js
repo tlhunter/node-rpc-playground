@@ -12,6 +12,17 @@ function randomInteger (min, max) {
   return min + Math.floor(Math.random() * (max - min))
 }
 
+function generateRequest (method, params) {
+  let payload = {
+    jsonrpc: '2.0',
+    method,
+    params,
+    id: 100
+  }
+
+  return JSON.stringify(payload)
+}
+
 let opts = {port: SERVER_PORT, host: 'localhost'}
 
 start = Date.now()
@@ -19,20 +30,26 @@ console.log('starting timer', start)
 
 const request = util.promisify((method, params, id, callback) => {
   let data = ''
-  http.get({
+  http.request({
+    method: 'POST',
     hostname: opts.host,
     port: opts.port,
-    path: '/sum/' + params.join('/'),
-    agent: false  // create a new agent just for this one request
+    path: '/sum',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
   }, (res) => {
     res.on('data', (d) => {
       data += d
     })
     res.on('end', () => {
       let result = JSON.parse(data)
+      // console.log('result', result)
       callback(null, result)
     })
   })
+  .write(generateRequest('sum', [randomInteger(1, 100), randomInteger(1, 100)]))
 })
 
 startBenchmark()
