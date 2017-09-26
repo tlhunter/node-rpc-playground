@@ -4,7 +4,7 @@ const net = require('net')
 const util = require('util')
 
 const SERVER_PORT = 9090
-const OPERATIONS = 1000
+const OPERATIONS = 100000
 
 // Pool of callback handlers for expected RCP results
 // Should only contain 0 || 1 item as we do work sequentially

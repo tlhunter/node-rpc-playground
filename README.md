@@ -15,15 +15,15 @@ No modules are used (e.g. for a web server), with the exception of `msgpack5`, w
 * Request Size MessagePack: 40 bytes
 * Response Size MessagePack: ~27 bytes
 
-HTTP is included as a baseline. Don't interpret these results as "Node can do X at y ops per second" as the code has not been optimized. Instead think of it as "This method is X times as fast as Y" as each test-case is just as sloppy ;).
+HTTP is included as a baseline. Don't interpret these results as "Node can do X at y ops per second" as the code has not been optimized. Instead think of it as "This method is X times as fast as Y".
 
-| Scenario    | Localhost | SF -> Freemont | SF -> London |
-|-------------|----------:|---------------:|-------------:|
-| _Node_      | v8.5.0    | v8.5.0         | v8.5.0       |
-| _Ping_      | 0.065 ms  | 5.264 ms       | 250.8 ms     |
-| HTTP + JSON | 3268 o/s  | ??? o/s        | ??? o/s      |
-| TCP + JSON  | 15886 o/s | 194.1 o/s      | 4.383 o/s    |
-| TCP + MP    | 8004 o/s  | 177.1 o/s      | 4.364 o/s    |
+| Scenario    | Localhost         | SF -> Freemont    | SF -> London      |
+|-------------|------------------:|------------------:|------------------:|
+| _Node_      | v8.5.0            | v8.5.0            | v8.5.0            |
+| _Ping_      | 0.065 ms          | 4.364 ms          | 142.5 ms          |
+| HTTP + JSON | 3268 o/s          | 65.40 o/s         | 3.479 o/s         |
+| TCP + JSON  | 15886 o/s (4.9x)  | 239.6 o/s (3.7x)  | 6.963 o/s (2.0x)  |
+| TCP + MP    | 8004 o/s (2.4x)   | 203.9 o/s (3.1x)  | 6.902 o/s (2.0x)  |
 
 ## Conclusion
 

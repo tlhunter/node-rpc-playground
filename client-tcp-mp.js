@@ -6,7 +6,7 @@ const util = require('util')
 const mp = require('msgpack5')()
 
 const SERVER_PORT = 9091
-const OPERATIONS = 1000
+const OPERATIONS = 100000
 
 // Pool of callback handlers for expected RCP results
 // Should only contain 0 || 1 item as we do work sequentially
