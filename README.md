@@ -17,7 +17,7 @@ No modules are used (e.g. for a web server), with the exception of `msgpack5`, w
 
 HTTP is included as a baseline. Don't interpret these results as "Node can do X at y ops per second" as the code has not been optimized. Instead think of it as "This method is X times as fast as Y".
 
-| Scenario    | Localhost         | SF -> Freemont    | SF -> London      |
+| Scenario    | Localhost         | SF -> Fremont     | SF -> London      |
 |-------------|------------------:|------------------:|------------------:|
 | _Node_      | v8.5.0            | v8.5.0            | v8.5.0            |
 | _Ping_      | 0.065 ms          | 4.364 ms          | 142.5 ms          |
